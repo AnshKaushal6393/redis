@@ -7,6 +7,8 @@ This repo contains a small local Redis setup (via Docker Compose) and example No
 - `foundation of redis/Readme.md` - documentation for the Docker setup
 - `setup_local_redis/` - Node.js example connecting to Redis + Mongo
 - `site_banner/` - Node.js + Redis example with REST endpoints
+- `user_profile_cache_json_vs_hash/` - comparison of caching user profiles as JSON strings vs Redis hashes
+
 
 ## Quick start (Redis + Mongo)
 From the repo root:
@@ -33,4 +35,8 @@ See: `setup_local_redis/readme.md`
 
 ### site_banner
 See: `site_banner/README.md`
+
+### user_profile_cache_json_vs_hash
+See: `user_profile_cache_json_vs_hash/README.md`
+
 
