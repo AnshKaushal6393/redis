@@ -9,6 +9,7 @@ app.get("/redis", async (req,res)=>{
     const reply = await redis.ping();
     res.json({redis:reply});
 })
+
 app.get("/mongo", async(req,res)=>{
     const url = process.env.MONGO_URL || "mongodb://localhost:27017/redis";
 
