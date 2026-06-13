@@ -30,6 +30,7 @@ docker-compose down
 ```
 
 ## Example projects
+
 ### setup_local_redis
 See: `setup_local_redis/readme.md`
 
@@ -59,6 +60,58 @@ Server listens on:
 
 ### user_profile_cache_json_vs_hash
 See: `user_profile_cache_json_vs_hash/README.md`
+
+### bull_mq
+BullMQ example that demonstrates a producer (Express API) + consumer (Worker) using Redis.
+
+**Run (from repo root)**
+
+1) Start Redis
+
+```bash
+docker-compose up -d
+```
+
+2) API (producer)
+
+```bash
+cd bull_mq
+npm install
+npm run dev
+```
+
+The API listens on:
+- `http://localhost:3000`
+
+3) Worker (consumer)
+
+In a separate terminal (repo root), run:
+
+```bash
+cd bull_mq
+node src/worker.js
+```
+
+**API**
+- `POST /welcome-email`
+  - Body:
+    - `to` (string) - required
+    - `name` (string) - optional (defaults to `"Learner"`)
+  - Example:
+
+```bash
+curl -X POST http://localhost:3000/welcome-email \
+  -H "Content-Type: application/json" \
+  -d '{"to":"alice@example.com","name":"Alice"}'
+```
+
+- Response:
+  - `jobId` of the created BullMQ job
+
+**Notes**
+- `bull_mq/src/queue.js` connects to Redis at `localhost:6379` (no environment variable required).
+- Jobs are placed on the BullMQ queue named: `emails`
+
 
 
 
